@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { getMorePost } from "../apis/fetchTools";
 
+let pageCount = 1;
+
 const DataDisplay = () => {
   const [posts, setPosts] = useState([]);
-  const [pageCount, setPageCount] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
   const showPosts = () => {
@@ -15,8 +16,8 @@ const DataDisplay = () => {
         setHasMore(!hasMore);
       }
       setPosts((post) => [...post, ...response]);
-      setPageCount((val) => val + 1);
     });
+    pageCount += 1;
   };
 
   useEffect(() => {
