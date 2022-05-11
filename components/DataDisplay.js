@@ -1,16 +1,50 @@
-import styles from '../styles/Item.module.css'
-import DataItem from './DataItem'
+import styles from "../styles/Item.module.css";
+import DataItem from "./DataItem";
+import { useState, useEffect } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { getMorePost } from "../apis/fetchTools";
 
-export default function DataDisplay(){
-    return (
-        <div className= {styles.grid_wrapper}>
-            <DataItem/>
-            <DataItem/>
-            <DataItem/>
-            <DataItem/>
-            <DataItem/>
-            <DataItem/>
+const DataDisplay = () => {
+  const [posts, setPosts] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
 
+  const showPosts = () => {
+    getMorePost(pageCount).then((response) => {
+      if (response.length === 0) {
+        setHasMore(!hasMore);
+      }
+      setPosts((post) => [...post, ...response]);
+      setPageCount((val) => val + 1);
+    });
+  };
+
+  useEffect(() => {
+    showPosts();
+  }, []);
+
+  return (
+    <>
+      <h1 style={{ color: "white" }}>Great Tools to help your campaign</h1>
+      <hr />
+      <h3 style={{ color: "white" }}>Top in the tools category</h3>
+      <InfiniteScroll
+        dataLength={posts.length}
+        next={showPosts}
+        hasMore={hasMore}
+        loader={<h3> Loading...</h3>}
+        endMessage={<h4>Nothing more to show</h4>}
+      >
+        <div className={styles.grid_wrapper}>
+          {posts.map((data) => (
+            <div className={styles.grid_wrapper}>
+              <DataItem key={data.id} heading={data.name} />
+            </div>
+          ))}
         </div>
-    )
-}
+      </InfiniteScroll>
+    </>
+  );
+};
+
+export default DataDisplay;
