@@ -10,8 +10,7 @@ export default function DataDisplay(){
             <DataItem/>
             <DataItem/>
             <DataItem/>
-            <DataItem/>
-            <DataItem/>
+
         </div>
     )
 }

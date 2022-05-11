@@ -1,14 +1,41 @@
 .container{
-    background-color: aqua;
-    height: 50px;
-    width: 320px;
+    background-color: rgb(0, 0, 0);
+    font: 'Helvetica';
+    width: 45vw;
+    height: 17vh;
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+
+   
+    
+}
+.wrapper{
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    width: 80%;
+    border-bottom: 2px solid #626262;
+    
+}
+
+.wrapper button{
+    
+    border-radius: 2rem;
+    width: 20%;
+    height: 10%;
+    padding: 0.5rem;
+    background-color: transparent;
+    color: white;
+    border: 1px solid white;
 }
 .img{
-    height: 100%;
-    width: 20%;
+    height: 65%;
+    width: 12%;
+    border-radius: 50%;
     background-color: rgb(255, 131, 131);
     color: rgb(38, 38, 38);
     display: flex;
@@ -18,17 +45,30 @@
 .data{
     height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: space-around;
+    margin-left: 40px;
+    flex-direction: column;
+    padding: 1rem 0rem;
+    justify-content: flex-start;
     width: 80%;
-    background-color: rgb(188, 255, 255);
+    
+    color: white;
+    
+
+}
+
+.data span{
+    font-size: 1.4rem;
+}
+
+.data p{
+ 
 }
 
 
 .grid_wrapper{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
+    gap: 20px;
      grid-auto-rows: minmax(70px, auto);
 
 }
