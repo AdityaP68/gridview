@@ -15,6 +15,7 @@ const DataDisplay = () => {
       if (response.length === 0) {
         setHasMore(!hasMore);
       }
+      console.log(response);
       setPosts((post) => [...post, ...response]);
     });
     pageCount += 1;
@@ -38,8 +39,8 @@ const DataDisplay = () => {
       >
         <div className={styles.grid_wrapper}>
           {posts.map((data) => (
-            <div className={styles.grid_wrapper}>
-              <DataItem key={data.id} heading={data.name} />
+            <div className={styles.grid_wrapper} key={data.id}>
+              <DataItem heading={data.name} description={`${data.completed}`} />
             </div>
           ))}
         </div>
